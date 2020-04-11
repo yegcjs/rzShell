@@ -1,0 +1,6 @@
+cmp
+cp
+cd
+cat
+wc
+man
