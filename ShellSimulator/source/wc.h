@@ -13,5 +13,5 @@ public:
 private:
     int tot_w,tot_c,tot_l;
     bool w,c,l;
-    vector<string> files;
+    vector<FILE*> files;
 };

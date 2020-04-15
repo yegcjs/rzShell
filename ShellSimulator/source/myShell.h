@@ -19,13 +19,13 @@ void init();
 void exec();
 
 //execute cmd
-void call(string cmd,string argv);
+//void call(string cmd,string argv);
 
 //add available command,return number of successfully added cmds
-int add(string argv);
+//int add(string argv);
 
 //
-int sh(string argv);
+//int sh(string argv);
 
 void split(string line,string &cmd);
 

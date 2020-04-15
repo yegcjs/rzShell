@@ -27,6 +27,15 @@ void init(){
     }
  //   freopen("/dev/tty",)
     fclose(cmds);
+
+    FILE *log=fopen("files/log.txt","r");
+    if(log){
+        char dir[10010];
+        
+        if(fgets(dir,10009,log)>0)
+            manager.run(string("cd"),string(dir));
+        fclose(log);
+    }
 }
 
 void split(string line,string &cmd,string &argv){
@@ -42,7 +51,7 @@ void split(string line,string &cmd,string &argv){
     return;
 }
 
-
+/*
 int add(string argv){
     FILE *cmds=fopen((shell_dir+string("/files/config.txt")).c_str(),"a");
     if(!cmds){
@@ -81,6 +90,7 @@ int add(string argv){
     fclose(cmds);
     return cnt;
 }
+*/
 
 void exec(){
     while(!feof(stdin)){ 
@@ -96,9 +106,7 @@ void exec(){
 
         string cmd,args;
         split(line,cmd,args);
-        if(cmd==string("add"))
-            add(args);
-        else if(myCommands.count(cmd))
+        if(myCommands.count(cmd))
             manager.run(cmd,args);
         else system(line.c_str());
     }
@@ -109,5 +117,7 @@ int main(){
     init();
     cout<<"Welcome to myShell"<<endl;
     exec();
+    FILE *log=fopen((shell_dir+string("/files/log.txt")).c_str(),"w");
+    if(log) fclose(log);
     return 0;
 }

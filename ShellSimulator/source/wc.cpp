@@ -18,7 +18,8 @@ wc::wc(string input)
 
     
     for(int i=0;i<files.size();i++){
-        FILE *file = fopen(files[i].c_str(),"rb");
+        //FILE *file = fopen(files[i].c_str(),"rb");
+        FILE *file=files[i];
         bool pre_is_split=true;
         int cur_w=0,cur_l=0,cur_c=0;
         while(!feof(file)){
@@ -32,7 +33,7 @@ wc::wc(string input)
                 cur_w++;
             pre_is_split=cur_is_split;
         }
-        fclose(file);
+        //fclose(file);
         tot_w+=cur_w; tot_l+=cur_l;  tot_c+=cur_c;
         if(l)printf("%5d",cur_l);
         if(w)printf("%6d",cur_w);
@@ -48,7 +49,10 @@ wc::wc(string input)
     }
 }
 
-wc::~wc(){}
+wc::~wc(){
+    for(int i=0;i<files.size();i++)
+        fclose(files[i]);
+}
 
 int wc::check_init(){
     for(int i=0;i<option.size();i++){
@@ -68,7 +72,7 @@ int wc::check_init(){
             switch (filetype(args[i][j]))
             {
             case _file_:{
-                files.push_back(args[i][j]);
+                files.push_back(fopen(args[i][j].c_str(),"r"));
                 break;
             }
             case _dir_:{
@@ -83,6 +87,8 @@ int wc::check_init(){
                 break;
             }
         }
+    
+    if(!w && !c && !l) w=c=l=true;
     
     return files.size();
 }

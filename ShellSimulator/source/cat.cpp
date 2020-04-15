@@ -35,7 +35,7 @@ int cat::check_init(){
         
         switch(filetype(args[0][i])){
         case _file_:{
-            files.push_back(fopen(args[0][1].c_str(),"r"));
+            files.push_back(fopen(args[0][i].c_str(),"r"));
             break;
         }
         case _dir_:{

@@ -1,0 +1,9 @@
+NAME
+  cmp - compare two files byte by byte  
+
+SYNOPSIS
+  cmp FILE1 FILE2
+
+DESCRIPTION
+  Compare file1 and file2 byte by byte.
+  Output the position and line of the first diffrent byte.

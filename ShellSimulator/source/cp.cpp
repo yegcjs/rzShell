@@ -23,8 +23,9 @@ cp::cp(string &input)
         fclose(out);
     };
 
-    if(status==1)
+    if(status==1){
         copy(file_list[0],target);
+    }
     else if(status==2){
         for(int i=0;i<dir_list.size();i++)
             mkdir((target+"/"+dir_list[i]).c_str(),S_IRWXG);
@@ -75,12 +76,15 @@ int cp::check_init(){
             case _dir_:{
                 if(option[i]==string("r"))
                     open_dir(cur,split(cur));
-                else print_error((char*)"-rNotSpecified",cur);
+                else{
+                    print_error((char*)"-rNotSpecified",cur);
+                    return -1;
+                }
                 break;
             }
             case _null_:{
                 print_error((char*)"notExist",cur);
-                break;
+                return -1;
             }
             case _file_:{
                 file_list.push_back(cur);

@@ -1,0 +1,12 @@
+NAME
+    install - install new command(s) whose .cpp and .headers or .o with the same name are provided
+
+SYNOPSIS
+    install COMMAND [COMMAND] ...
+
+DESCRIPTION
+    Install the COMMAND[s].
+    The install command will automatically rewrite your config.txt, makefile for myShell and cmdManager.cpp and remake the shell.
+    After an installation, the shell will be reopen in the directory where you previously call this command.
+    No options is available.
+

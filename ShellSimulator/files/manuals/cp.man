@@ -1,0 +1,16 @@
+NAME
+  cp - copy files and directory
+
+SYNOPSIS
+  cp [OPTION] SOURCES TARGET
+
+DESCRIPTION
+  Copy files or directory in SOURCES  to TARGET.
+  If SOURCES is ONE file or directory, it will be copied as the file(DIRECTORY) named TARGET. 
+  If SOURCES is several files and directories, it will be copied into the direcotry named TARGET.
+
+  -r 
+    it means the following arguments includes directory. Without this option, you cannot copy a directory.
+  
+  
+

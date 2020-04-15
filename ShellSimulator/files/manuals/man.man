@@ -1,0 +1,10 @@
+NAME
+    man - show manual of certain command(s)
+
+SYNOPSIS
+    man COMMAND [COMMAND]...
+
+DESCRIPTION
+    man opens the manual files of COMMAND(s) in ./files/manuals. 
+    If the command is not designed by thie Shell Simulator, it calls the manuals from the system.
+
