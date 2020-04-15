@@ -31,7 +31,7 @@ int cmp::check_init(){
     auto checkFile = [this](string file_name,FILE *&file){
         file = fopen(file_name.c_str(),(char*)"rb");
         if(!file){
-            if(!system((string("cd ")+file_name).c_str()))
+            if(filetype(file_name)==_dir_)
                 print_error((char*)"isDirectory",file_name);
             else print_error((char*)"notExist",file_name);
             return -1;

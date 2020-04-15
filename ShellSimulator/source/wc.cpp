@@ -38,7 +38,7 @@ wc::wc(string input)
         if(l)printf("%5d",cur_l);
         if(w)printf("%6d",cur_w);
         if(c)printf("%7d",cur_c);
-        cout<<"  "<<files[i]<<endl;
+        cout<<"  "<<files_name[i]<<endl;
     }
 
     if(files.size()>1){
@@ -72,6 +72,7 @@ int wc::check_init(){
             switch (filetype(args[i][j]))
             {
             case _file_:{
+                files_name.push_back(args[i][j]);
                 files.push_back(fopen(args[i][j].c_str(),"r"));
                 break;
             }

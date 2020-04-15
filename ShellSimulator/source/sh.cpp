@@ -1,7 +1,7 @@
 #include"sh.h"
 #include<iostream>
 #include<unistd.h>
-
+#include<cstring>
 sh::sh(string input)
     :Command(input){
     //cmdManager manager;
@@ -21,12 +21,21 @@ sh::sh(string input)
     
     if(check_init()){
         for(int i=0;i<files.size();i++){
-            if(sizeof(wdir[i]))
+            if(wdir[i].size())
                 cd tmp(wdir[i]);
             
             char buffer[10010];
-            while(!fgets(buffer,10009,files[i])){ 
-                string line(buffer,0,sizeof(buffer)-1);
+        
+            while(fgets(buffer,10009,files[i])>0){
+                for(int i=strlen(buffer)-1;i>=0;i--)
+                    if(buffer[i]=='\n' || buffer[i]==' ' || buffer[i]=='\t')
+                        buffer[i]='\0';
+                    else break;
+                //printf("%sp",buffer);
+                string line(buffer);
+                cout<<line<<endl;
+                //printf("%s>",buffer);
+                //cout<<line<<"p"<<endl;
                 string cmd,args;
                 split(line,cmd,args);
                 if(myCommands.count(cmd))
@@ -53,11 +62,19 @@ int sh::check_init(){
         if(filetype(args[0][i])==_file_){
             files.push_back(fopen(args[0][i].c_str(),"r"));
             string tmp_dir=args[0][i];
+
             for(int j=tmp_dir.size();j>=0;j--)
-                if(i=='\\'||i=='/'||!i){
-                    tmp_dir = tmp_dir.substr(0,i);
+                if(tmp_dir[j]=='\\'||tmp_dir[j]=='/'||!j){
+                    bool flag=0;
+                    while((tmp_dir[j]=='\\'||tmp_dir[j]=='/')&&j){
+                        j--;
+                        flag=true;
+                    }
+                    if(flag) j++;
+                    tmp_dir = tmp_dir.substr(0,j);
                     break;
                 }
+            
             wdir.push_back(tmp_dir);
         }
         else{
@@ -65,6 +82,7 @@ int sh::check_init(){
             return 0;
         }
     }
+    return files.size();
 } 
 
 void sh::print_error(char *error_type,string argv){
