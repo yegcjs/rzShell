@@ -4,7 +4,7 @@
 
 <!-- TOC -->
 
-* [Shell Simulator](#Shell Simulator)
+* [Shell Simulator](#ShellSimulator)
   * [效果展示](#效果展示)
   * [基本命令](#基本命令)
     * [cd](#cd)
@@ -16,8 +16,8 @@
   * [sh](#sh)
   * [install命令与命令开发](#install命令与命令开发)
     * [install命令的实现](#install命令的实现)
-      * [Shell Simulator的模块结构](#Shell Simulator)
-      * [Shell Simulator目录下的文件](#Shell Simulator)
+      * [Shell Simulator的模块结构](#ShellSimulator的模块结构)
+      * [Shell Simulator目录下的文件](#ShellSimulator目录下的文件)
   		* [install命令执行流程](#install命令执行流程)
 		* [编写命令涉及的API](#编写命令涉及的API)
 		* [一个例子: demo](#一个例子: demo)
@@ -129,7 +129,7 @@ install命令通过调用`system("make")`编译新命令并重新链接实现增
 2. myShell中读取命令并根据命令是否已经被install决定是否分配给cmdManager
 3. cmdManager收到分配后，调用相应的命令（每个命令为一个类，都继承自Command基类）
 
-#### Shell Simulator下的文件目录
+#### ShellSimulator下的文件目录
 
 ![image-20200421120438254](https://github.com/yegcjs/simu-Shell/raw/master/pic\image-20200421120438254.png)
 
