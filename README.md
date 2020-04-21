@@ -4,24 +4,24 @@
 
 <!-- TOC -->
 
-* [Shell Simulator][# Shell Simulator]
-  * [效果展示][## 效果展示]
-  * [基本命令][## 基本命令]
-    * [cd][### cd]
-    * [cmp][### cmp]
-    * [cat][### cat]
-    * [wc][### wc]
-    * [cp][### cp]
-    * [man][### man]
-  * [sh][## sh]
-  * [install命令与命令开发][## install命令与命令开发]
-    * [install命令的实现][### install命令的实现]
-      * [Shell Simulator的模块结构][#### Shell Simulator]
-      * [Shell Simulator目录下的文件][#### Shell Simulator]
-  		* [install命令执行流程][### install命令执行流程]
-		* [编写命令涉及的API][### 编写命令涉及的API]
-		* [一个例子: demo][### 一个例子: demo]
-* [其他未定义命令][## 其他未定义命令]
+* [Shell Simulator](# Shell Simulator)
+  * [效果展示](## 效果展示)
+  * [基本命令](## 基本命令)
+    * [cd](### cd)
+    * [cmp](### cmp)
+    * [cat](### cat)
+    * [wc](### wc)
+    * [cp](### cp)
+    * [man](### man)
+  * [sh](## sh)
+  * [install命令与命令开发](## install命令与命令开发)
+    * [install命令的实现](### install命令的实现)
+      * [Shell Simulator的模块结构](#### Shell Simulator)
+      * [Shell Simulator目录下的文件](#### Shell Simulator)
+  		* [install命令执行流程](### install命令执行流程)
+		* [编写命令涉及的API](### 编写命令涉及的API)
+		* [一个例子: demo](### 一个例子: demo)
+* [其他未定义命令](## 其他未定义命令)
   
   
 
@@ -29,7 +29,7 @@
 
 ## 效果展示
 
-![DeepinScreenshot_dde-desktop_20200422010602](C:\course\CS\Practice of Fundamental Programming\Project2\DeepinScreenshot_dde-desktop_20200422010602.png)
+![DeepinScreenshot_dde-desktop_20200422010602](pic\DeepinScreenshot_dde-desktop_20200422010602.png)
 
 ## 基本命令
 
@@ -123,7 +123,7 @@ install命令通过调用`system("make")`编译新命令并重新链接实现增
 
 ### Shell Similator 的模块结构
 
-![image-20200421115938685](C:\Users\yegcjs\AppData\Roaming\Typora\typora-user-images\image-20200421115938685.png)
+![image-20200421115938685](pic\image-20200421115938685.png)
 
 1. myTerm中通过`system("./myShell)`启动myShell
 2. myShell中读取命令并根据命令是否已经被install决定是否分配给cmdManager
@@ -131,11 +131,11 @@ install命令通过调用`system("make")`编译新命令并重新链接实现增
 
 #### Shell Simulator下的文件目录
 
-![image-20200421120438254](C:\Users\yegcjs\AppData\Roaming\Typora\typora-user-images\image-20200421120438254.png)
+![image-20200421120438254](pic\image-20200421120438254.png)
 
 * ./files/config.txt 中记录已经install的命令
 
-![image-20200421120544722](C:\Users\yegcjs\AppData\Roaming\Typora\typora-user-images\image-20200421120544722.png)
+![image-20200421120544722](pic\image-20200421120544722.png)
 
 * ./files/manuals/*.man为各个命令同名的帮助文档
 * ./source下存放所有源文件
@@ -293,13 +293,13 @@ public:
 
   >install demo
 
-  ![DeepinScreenshot_select-area_20200422005121](C:\course\CS\Practice of Fundamental Programming\Project2\DeepinScreenshot_select-area_20200422005121.png)
+  ![DeepinScreenshot_select-area_20200422005121](pic\DeepinScreenshot_select-area_20200422005121.png)
 
-  尝试运行demo：![DeepinScreenshot_select-area_20200422005219](C:\course\CS\Practice of Fundamental Programming\Project2\DeepinScreenshot_select-area_20200422005219.png)
+  尝试运行demo：![DeepinScreenshot_select-area_20200422005219](pic\DeepinScreenshot_select-area_20200422005219.png)
 
   卸载demo：
 
-  ![DeepinScreenshot_select-area_20200422005121](C:\course\CS\Practice of Fundamental Programming\Project2\DeepinScreenshot_select-area_20200422005104.png)
+  ![DeepinScreenshot_select-area_20200422005121](pic\DeepinScreenshot_select-area_20200422005104.png)
 
   也可以同时安装、卸载多个命令
 
