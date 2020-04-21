@@ -4,8 +4,8 @@
 
 <!-- TOC -->
 
-* [Shell Simulator](# Shell Simulator)
-  * [效果展示](## 效果展示)
+* [Shell Simulator](Shell Simulator)
+  * [效果展示](##效果展示)
   * [基本命令](## 基本命令)
     * [cd](### cd)
     * [cmp](### cmp)
