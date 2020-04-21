@@ -29,7 +29,7 @@
 
 ## 效果展示
 
-![DeepinScreenshot_dde-desktop_20200422010602](https://github.com/yegcjs/CourseManageSystem/raw/master/pic\DeepinScreenshot_dde-desktop_20200422010602.png)
+![DeepinScreenshot_dde-desktop_20200422010602](https://github.com/yegcjs/simu-Shell/raw/master/pic\DeepinScreenshot_dde-desktop_20200422010602.png)
 
 ## 基本命令
 
@@ -123,7 +123,7 @@ install命令通过调用`system("make")`编译新命令并重新链接实现增
 
 ### Shell Similator 的模块结构
 
-![image-20200421115938685](https://github.com/yegcjs/CourseManageSystem/raw/master/pic\image-20200421115938685.png)
+![image-20200421115938685](https://github.com/yegcjs/simu-Shell/raw/master/pic\image-20200421115938685.png)
 
 1. myTerm中通过`system("./myShell)`启动myShell
 2. myShell中读取命令并根据命令是否已经被install决定是否分配给cmdManager
@@ -131,11 +131,11 @@ install命令通过调用`system("make")`编译新命令并重新链接实现增
 
 #### Shell Simulator下的文件目录
 
-![image-20200421120438254](https://github.com/yegcjs/CourseManageSystem/raw/master/pic\image-20200421120438254.png)
+![image-20200421120438254](https://github.com/yegcjs/simu-Shell/raw/master/pic\image-20200421120438254.png)
 
 * ./files/config.txt 中记录已经install的命令
 
-![image-20200421120544722](https://github.com/yegcjs/CourseManageSystem/raw/master/pic\image-20200421120544722.png)
+![image-20200421120544722](https://github.com/yegcjs/simu-Shell/raw/master/pic\image-20200421120544722.png)
 
 * ./files/manuals/*.man为各个命令同名的帮助文档
 * ./source下存放所有源文件
@@ -293,13 +293,13 @@ public:
 
   >install demo
 
-  ![DeepinScreenshot_select-area_20200422005121](https://github.com/yegcjs/CourseManageSystem/raw/master/pic\DeepinScreenshot_select-area_20200422005121.png)
+  ![DeepinScreenshot_select-area_20200422005121](https://github.com/yegcjs/simu-Shell/raw/master/pic\DeepinScreenshot_select-area_20200422005121.png)
 
-  尝试运行demo：![DeepinScreenshot_select-area_20200422005219](https://github.com/yegcjs/CourseManageSystem/raw/master/pic\DeepinScreenshot_select-area_20200422005219.png)
+  尝试运行demo：![DeepinScreenshot_select-area_20200422005219](https://github.com/yegcjs/simu-Shell/raw/master/pic\DeepinScreenshot_select-area_20200422005219.png)
 
   卸载demo：
 
-  ![DeepinScreenshot_select-area_20200422005121](https://github.com/yegcjs/CourseManageSystem/raw/master/pic\DeepinScreenshot_select-area_20200422005104.png)
+  ![DeepinScreenshot_select-area_20200422005121](https://github.com/yegcjs/simu-Shell/raw/master/pic\DeepinScreenshot_select-area_20200422005104.png)
 
   也可以同时安装、卸载多个命令
 
