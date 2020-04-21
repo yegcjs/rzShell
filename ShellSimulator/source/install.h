@@ -3,7 +3,7 @@
 #include<set>
 class install:public Command{
 private:
-    set<string> newCommands;
+    set<string> newCommands,abanCommands;
     FILE *config,*makefile,*managercpp;
     //successfully 1 else 0
     int update_config();

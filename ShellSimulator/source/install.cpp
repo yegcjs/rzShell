@@ -25,37 +25,60 @@ install::install(string input)
         FILE *log =fopen((shell_dir+string("/files/log.txt")).c_str(),"w");
         fprintf(log,"%s",current_dir);
         cout<<"install "<<newCommands.size()<<" commands successfully."<<endl;
-        if(config) fclose(config);
-        if(makefile) fclose(makefile);
-        if(managercpp) fclose(managercpp);
+        cout<<"uninstall "<<abanCommands.size()<<" commands sucessfully."<<endl;
+        fclose(log);
+        //if(config) fclose(config);
+        //if(makefile) fclose(makefile);
+        //if(managercpp) fclose(managercpp);
+
         exit(1);
     }
 }
 
 int install::check_init(){
-    
+    /*
     for(int i=0;i<option.size();i++){
         if(i || option[i]!=string("")){
             print_error((char*)"option",option[i]);
             return -1;
         }
-    }
-    for(int i=0;i<args[0].size();i++){
-        if(myCommands.count(args[0][i]))
-            print_error((char*)"existing",args[0][i]);
-        else{
-            string h_dir = shell_dir+"/source/"+args[0][i]+".h";
-            string cpp_dir = shell_dir+"/source/"+args[0][i]+".cpp";
-            string bin_dir = shell_dir+"/bin/"+args[0][i]+".o";
-            if((filetype(h_dir)==_file_ && filetype(cpp_dir)==_file_)
-                    ||filetype(bin_dir)==_file_){
-                newCommands.insert(args[0][i]);
+    }*/
+    for(int i=0;i<option.size();i++){
+        if(option[i]!=string("")&&option[i]!=string("d")){
+            print_error((char*)"option",option[i]);
+            return 0;
+        }
+        bool flag = option[i]==string("d")?true:false;
+        for(int j=0;j<args[i].size();j++){
+            if(myCommands.count(args[i][j])){
+                if(flag){
+                    string h_dir = shell_dir+"/source/"+args[i][j]+".h";
+                    string cpp_dir = shell_dir+"/source/"+args[i][j]+".cpp";
+                    string bin_dir = shell_dir+"/bin/"+args[i][j]+".o";
+                    if((filetype(h_dir)==_file_ && filetype(cpp_dir)==_file_)
+                        ||filetype(bin_dir)==_file_){
+                        abanCommands.insert(args[i][j]);
+                    }
+                }
+                else print_error((char*)"existing",args[i][j]);
+            }  
+            else{
+                if(!flag){
+                    string h_dir = shell_dir+"/source/"+args[i][j]+".h";
+                    string cpp_dir = shell_dir+"/source/"+args[i][j]+".cpp";
+                    string bin_dir = shell_dir+"/bin/"+args[i][j]+".o";
+                    if((filetype(h_dir)==_file_ && filetype(cpp_dir)==_file_)
+                            ||filetype(bin_dir)==_file_){
+                        newCommands.insert(args[i][j]);
+                    }
+                }
+                else print_error((char*)"notExist",args[i][j]);
             }
         }
     }
     //cout<<"check_int"<<endl;
-    if(!newCommands.size()) return 0;
-    config = fopen((shell_dir+"/files/config.txt").c_str(),"a");
+    if(!(newCommands.size()+abanCommands.size())) return 0;
+    config = fopen((shell_dir+"/files/config.txt").c_str(),"w");
     if(!config){print_error((char*)"nofile",string("config.txt"));return 0;}
     makefile = fopen((shell_dir+"/makefile").c_str(),"w");
     if(!makefile){print_error((char*)"nofile",string("makefile"));return 0;}
@@ -63,7 +86,7 @@ int install::check_init(){
     if(!managercpp){print_error((char*)"nofile",string("cmdManager.cpp"));return 0;}
 
 
-    return newCommands.size();
+    return newCommands.size()+abanCommands.size();
 }
 
 void install::print_error(char *error_type,string argv){
@@ -77,9 +100,17 @@ void install::print_error(char *error_type,string argv){
         cout<<"command "<<argv<<"is already existing in your shell."<<endl;
     if(error==string("nofile"))
         cout<<"cannot open file "<<argv<<endl;
+    if(error==string("notExist"))        
+        cout<<"command "<<argv<<"does not exist in your shell."<<endl;
+
+
 }
 
 int install::update_config(){
+    for(set<string>::iterator it=myCommands.begin();it!=myCommands.end();it++)
+        if(!abanCommands.count(*it))
+            fprintf(config,"%s\n",it->c_str());
+    
     for(set<string>::iterator it=newCommands.begin();it!=newCommands.end();it++)
         fprintf(config,"%s\n",it->c_str());
 
@@ -122,6 +153,7 @@ int install::update_makefile(){
     
     //mycommands.o
     for(set<string>::iterator it=myCommands.begin();it!=myCommands.end();it++){
+        if(abanCommands.count(*it)) continue;
         fprintf(makefile,"bin/%s.o:source/%s.cpp source/%s.h\n",it->c_str(),it->c_str(),it->c_str());
         fprintf(makefile,"\tg++ -g -c source/%s.cpp -o bin/%s.o\n",it->c_str(),it->c_str());
     }
@@ -132,7 +164,7 @@ int install::update_makefile(){
 
     //clean
     fprintf(makefile,"clean:\n");
-    fprintf(makefile,"\trm /bin/*.o\n\trm myShell");    
+    fprintf(makefile,"\trm bin/*.o\n\trm myShell");    
     
     fclose(makefile);
     return 1;
@@ -149,6 +181,7 @@ int install::update_manager(){
     //run
     fprintf(managercpp,"void cmdManager::run(string cmd,string argv){\n");
     for(set<string>::iterator it=myCommands.begin();it!=myCommands.end();it++){
+        if(abanCommands.count(*it)) continue;
         fprintf(managercpp,"\tif(cmd==string(\"%s\"))\n",it->c_str());
         fprintf(managercpp,"\t\t%s tmp(argv);\n",it->c_str());
     }

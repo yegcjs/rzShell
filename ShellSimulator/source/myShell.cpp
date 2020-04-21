@@ -96,7 +96,8 @@ void exec(){
     while(!feof(stdin)){ 
         char cwd[10010];
         getcwd(cwd,10009);
-        cout<<username+"@"+host+":"<<cwd<<"$ ";
+        printf("\033[36m%s@%s\033[0m:\033[33m%s\033[0m$ ",username.c_str(),host.c_str(),cwd);
+        //cout<<username+"@"+host+":"<<cwd<<"$ ";
         string line;char buffer[10010];
         if(fgets(buffer,10009,stdin)<=0)
             return;
