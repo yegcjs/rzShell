@@ -20,7 +20,7 @@
       * [Shell Simulator目录下的文件](#ShellSimulator目录下的文件)
   		* [install命令执行流程](#install命令执行流程)
 		* [编写命令涉及的API](#编写命令涉及的API)
-		* [一个例子: demo](#一个例子: demo)
+		* [一个例子: demo](#一个例子:demo)
 * [其他未定义命令](#其他未定义命令)
   
   
